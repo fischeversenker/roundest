@@ -1,0 +1,59 @@
+.App {
+  text-align: center;
+  background-color: #505050;
+  color: white;
+  font-family: 'Avenir', sans-serif;
+}
+
+.match {
+  transition: background-color .2s ease;
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  font-size: 1.5rem;
+}
+
+.match + .match {
+  margin-left: 2rem;
+}
+
+.match:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.figure {
+  height: 96px;
+  width: 96px;
+}
+
+/* loading spinner */
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
