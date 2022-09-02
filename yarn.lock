@@ -323,6 +323,11 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@solid-primitives/scheduled@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/scheduled/-/scheduled-1.0.1.tgz#e5b07452f39d27504c4ba1caa64d65020110c017"
+  integrity sha512-zRyW9L4nYdL0yZktvJz/Ye9kVNa6UW26L71sZEqzzHnxvDidbT+mln4np7jqFrAeGiWMwWnRDR/ZvM0FK85jMw==
+
 ansi-styles@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-3.2.1.tgz#41fbb20243e50b12be0f04b8dedbf07520ce841d"
