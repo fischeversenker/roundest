@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@solid-primitives/scheduled": "^1.0.1",
+    "@types/canvas-confetti": "^1.4.3",
+    "canvas-confetti": "^1.5.1",
     "solid-js": "^1.5.1"
   }
 }

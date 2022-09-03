@@ -1,6 +1,7 @@
 import { debounce } from '@solid-primitives/scheduled';
 import { Component, createResource, createSignal, For, Show } from 'solid-js';
 import styles from './App.module.css';
+import Match from './Match';
 
 const fetchMatch = async (): Promise<
   { name: string; imageUrl: string; id: number }[]
@@ -10,6 +11,8 @@ const fetchMatch = async (): Promise<
 
 const App: Component = () => {
   const [matches, { refetch: refetchMatches }] = createResource(fetchMatch);
+  const [isLoading, setIsLoading] = createSignal(false);
+  const setIsLoadingDebounced = debounce(() => setIsLoading(true), 400);
 
   async function handleClick(id: number) {
     setIsLoadingDebounced();
@@ -21,26 +24,21 @@ const App: Component = () => {
     setIsLoading(false);
   }
 
-  const [isLoading, setIsLoading] = createSignal(false);
-  const setIsLoadingDebounced = debounce(() => setIsLoading(true), 400);
-
   return (
     <div class={styles.App}>
-      <Show
-        when={!isLoading()}
-        fallback={<span class={styles['lds-dual-ring']}></span>}
-      >
-        <For each={matches()}>
-          {(match) => (
-            <div class={styles.match} onClick={() => handleClick(match.id)}>
-              <figure class={styles.figure}>
-                <img src={match.imageUrl}></img>
-              </figure>
-              <p>{match.name}</p>
-            </div>
-          )}
-        </For>
-      </Show>
+      <h1>Which one is the roundest?</h1>
+      <div class={styles.matches}>
+        <Show
+          when={!isLoading()}
+          fallback={<span class={styles['lds-dual-ring']}></span>}
+        >
+          <For each={matches()}>
+            {(match) => (
+              <Match {...match} onClick={() => handleClick(match.id)}></Match>
+            )}
+          </For>
+        </Show>
+      </div>
     </div>
   );
 };
