@@ -1,10 +1,9 @@
 import { oakCors } from 'https://deno.land/x/cors@v1.2.2/mod.ts';
-import { config } from "https://deno.land/x/dotenv@v3.2.0/mod.ts";
 import {
   Application,
   FlashServer,
   hasFlash,
-  Router
+  Router,
 } from 'https://deno.land/x/oak@v11.1.0/mod.ts';
 
 import logger from 'https://deno.land/x/oak_logger@1.0.0/mod.ts';
@@ -12,11 +11,8 @@ import {
   connect,
   fetchPokemon,
   getPokemonById,
-  incrementPokemonVote
+  incrementPokemonVote,
 } from './db_adapter.ts';
-
-// load env vars
-config({ safe: true, export: true });
 
 // connect to DB
 await connect();

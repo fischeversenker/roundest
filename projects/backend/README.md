@@ -13,5 +13,13 @@ in the shell, do any of the following
 - `hget pokemon:[id] votes`
 - `hgetall pokemon:[id]`
 
+## ENV vars
+The Deno program requires the following two env vars to be set:
+`REDISHOST` & `REDISPORT`
+Optional:
+`REDISUSER` & `REDISPASSWORD`
+
+To load the `.env` file that is available in this repository, run `. ./.env` in your terminal session.
+
 ## start the deno backend
 `deno task start` or `deno task dev` for watch mode
