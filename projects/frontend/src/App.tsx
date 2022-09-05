@@ -6,7 +6,7 @@ import Match from './Match';
 const fetchMatch = async (): Promise<
   { name: string; imageUrl: string; id: number }[]
 > => {
-  return await fetch('http://localhost:8080/').then((res) => res.json());
+  return await fetch(import.meta.env.VITE_API_HOST).then((res) => res.json());
 };
 
 const App: Component = () => {
@@ -17,7 +17,7 @@ const App: Component = () => {
   async function handleClick(id: number) {
     setIsLoadingDebounced();
 
-    await fetch(`http://localhost:8080/vote/${id}`);
+    await fetch(`${import.meta.env.VITE_API_HOST}/vote/${id}`);
     await refetchMatches();
 
     setIsLoadingDebounced.clear();
