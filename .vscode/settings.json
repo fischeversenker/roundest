@@ -1,0 +1,4 @@
+{
+  "deno.enablePaths": ["projects/backend"],
+  "deno.unstable": true
+}
