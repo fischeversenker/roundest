@@ -1,4 +1,4 @@
-import { connect } from "https://deno.land/x/redis@v0.26.0/mod.ts";
+import { connect as connectRedis, Redis } from "https://deno.land/x/redis@v0.26.0/mod.ts";
 
 interface Pokemon {
   id: number;
@@ -8,12 +8,15 @@ interface Pokemon {
   votes?: number;
 }
 
-const redisClient = await connect({ hostname: "127.0.0.1", port: 6379 });
+let redisClient: Redis;
 
 const getPokemonKey = (id: number) => `pokemon:${id}`;
 
-export const incrementPokemonVote = (id: number) =>
-  redisClient.hincrby(getPokemonKey(id), "votes", 1);
+export function incrementPokemonVote(id: number) {
+  if (!redisClient) throw new Error('No DB connection');
+
+  return redisClient.hincrby(getPokemonKey(id), "votes", 1);
+}
 
 /**
  * fetches the pokemon from the pokeapi and populates the DB
@@ -21,6 +24,8 @@ export const incrementPokemonVote = (id: number) =>
  * @returns a Promise that will resolve when the DB has data
  */
 export async function fetchPokemon(): Promise<void> {
+  if (!redisClient) throw new Error('No DB connection');
+
   if (await redisClient.exists("hasPokemon")) {
     return;
   }
@@ -56,6 +61,8 @@ export async function fetchPokemon(): Promise<void> {
 }
 
 export async function getPokemonById(id: number): Promise<Pokemon> {
+  if (!redisClient) throw new Error('No DB connection');
+
   const pokemonHash = await redisClient.hgetall(getPokemonKey(id));
 
   if (pokemonHash.length === 0) {
@@ -85,4 +92,8 @@ export async function getPokemonById(id: number): Promise<Pokemon> {
     ...pokemon as Pokemon,
     name,
   };
+}
+
+export async function connect() {
+  redisClient = await connectRedis({ hostname: Deno.env.get('REDISHOST')!, port: Deno.env.get('REDISPORT'), username: Deno.env.get('REDISUSER') || undefined, password: Deno.env.get('REDISPASSWORD') || undefined });
 }
