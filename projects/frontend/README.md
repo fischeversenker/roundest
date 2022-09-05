@@ -1,34 +1,29 @@
-## Usage
+# Roundest Frontend
+This is the Roundest Frontend. It's built with [SolidJS](https://solidjs.com).
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+## Local Development
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
-
-```bash
-$ npm install # or pnpm install or yarn install
+Install the dependencies with `yarn` (recommended)
+```sh
+yarn install
 ```
-
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+or `npm`
+```sh
+npm install
+```
 
 ## Available Scripts
 
 In the project directory, you can run:
+### `yarn start`
+to start the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `npm dev` or `npm start`
+The page will reload if you make edits.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `yarn build`
 
-The page will reload if you make edits.<br>
-
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
+Builds the app for production to the `dist` folder.\
 It correctly bundles Solid in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
-
-## Deployment
-
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
